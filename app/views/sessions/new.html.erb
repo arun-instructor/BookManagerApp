@@ -1,29 +1,31 @@
 <h1 class="txt-center">
-    Signup
+    Login
 </h1>
 
 <%= render "partials/error_flash" %>
 
-<%= form_for(@user) do |f| %>
+<%= render "partials/success_flash" %>
+
+<%= form_tag do %>
     <div class="container well margin-top-20 small-container">
     	<div class="bold margin-top-20">
     		Email
     	</div>
     	<div class="margin-top-20">
-    		<%= f.email_field :email, class: "form-control" %>
+    		<input name="email" type="email" class="form-control" />
     	</div>
     	<div class="bold margin-top-20">
     		Password
     	</div>
     	<div class="margin-top-20">
-    		<%= f.password_field :password, class: "form-control" %>
+    		<input name="password" type="password" class="form-control" />
     	</div>
     	<div class="margin-top-20">
     		<a href="/" class="btn btn-default">Cancel</a>
-    		<%= f.submit "Submit User", class: "btn btn-primary" %>
+    		<button type="submit" class="btn btn-primary">Login</button>
     	</div>
         <div class="margin-top-10">
-            <a href="#">Have an account? Login here</a>
+            <a href="#">Need an account? Signup here</a>
         </div>
     </div>
 <% end %>
