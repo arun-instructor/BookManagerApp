@@ -2,67 +2,72 @@
 	<div class="margin-top-20">
 		<a href="#" data-toggle="modal" data-target="#add-book-modal" class="btn btn-primary">Add New Book</a>
 	</div>
-	<!--One Book-->
-	<div class="row margin-top-20 book-container">
-		<div class="col-sm-3">
-			<img src="https://s3-us-west-2.amazonaws.com/sandboxapi/to_kill_a_mockingbird.jpg" class="img-responsive" />
+
+	<% @books.each do |book| %>
+		<!--One Book-->
+		<div class="row margin-top-20 book-container">
+			<div class="col-sm-3">
+				<img src="<%= book.image %>" class="img-responsive" />
+			</div>
+			<div class="col-sm-9">
+				<div class="margin-top-20">
+					<span class="bold">Title: </span><span><%= book.title %></span>
+				</div>
+				<div>
+					<span class="bold">Author: </span><span><%= book.author %></span>
+				</div>
+				<div>
+					<span class="bold">Release Date: </span><span><%= book.release_date %></span>
+				</div>
+				<div class="margin-top-20">
+					<a href="#" class="btn btn-default">Edit Book</a>
+				</div>
+			</div>
 		</div>
-		<div class="col-sm-9">
-			<div class="margin-top-20">
-				<span class="bold">Title: </span><span>To Kill a Mockingbird</span>
-			</div>
-			<div>
-				<span class="bold">Author: </span><span>Harper Lee</span>
-			</div>
-			<div>
-				<span class="bold">Release Date: </span><span>July 11, 1960</span>
-			</div>
-			<div class="margin-top-20">
-				<a href="#" class="btn btn-default">Edit Book</a>
-			</div>
-		</div>
-	</div>
-	<!--/One Book-->
+		<!--/One Book-->
+	<% end %>
 </div>
 
 <!--Add Book Modal-->
 <div id="add-book-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">Add New Book</h4>
-			</div>
-			<div class="modal-body">
-				<div class="bold">
-					Title
+			<%= form_for(Book.new) do |f| %>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Add New Book</h4>
 				</div>
-				<div class="margin-top-20">
-					<input type="text" class="form-control" />
+				<div class="modal-body">
+					<div class="bold">
+						Title
+					</div>
+					<div class="margin-top-20">
+						<%= f.text_field :title, class: "form-control" %>
+					</div>
+					<div class="bold margin-top-20">
+						Author
+					</div>
+					<div class="margin-top-20">
+						<%= f.text_field :author, class: "form-control" %>
+					</div>
+					<div class="bold margin-top-20">
+						Release Date
+					</div>
+					<div class="margin-top-20">
+						<%= f.text_field :release_date, class: "form-control" %>
+					</div>
+					<div class="bold margin-top-20">
+						Image
+					</div>
+					<div class="margin-top-20">
+						<%= f.text_field :image, class: "form-control" %>
+					</div>
 				</div>
-				<div class="bold margin-top-20">
-					Author
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<%= f.submit "Submit Book", class: "btn btn-primary" %>
 				</div>
-				<div class="margin-top-20">
-					<input type="text" class="form-control" />
-				</div>
-				<div class="bold margin-top-20">
-					Release Date
-				</div>
-				<div class="margin-top-20">
-					<input type="text" class="form-control" />
-				</div>
-				<div class="bold margin-top-20">
-					Image
-				</div>
-				<div class="margin-top-20">
-					<input type="text" class="form-control" />
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save Book</button>
-			</div>
+			<% end %>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
             redirect_to "/login"
         end
     end
+
+    def current_user
+        return User.find(session[:current_user]["id"])
+    end
+
+    helper_method :current_user
 end
